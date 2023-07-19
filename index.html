@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <style>
+        .cal {
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            padding: 10px;
+            max-width: 300px;
+            margin: auto;
+            font-size: 2rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .result {
+            grid-column: 1/-1;
+            text-align: right;
+            margin-bottom: 10px;
+            background-color: whitesmoke;
+            padding: 10px 50px;
+        }
+
+        .cal::before {
+            content: "";
+            position: absolute;
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs7-GjZyxO5ijSiLdLs4p5zDaEVb45UbW9bA&usqp=CAU") no-repeat center center/cover;
+            top: 0px;
+            left: 300px;
+            width: 39%;
+            height: 30%;
+            z-index: -2;
+            opacity: 0.9;
+            border-radius: 1px;
+        }
+
+        .h {
+            text-align: center;
+            font-weight: bolder;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="cal">
+        <div id="result" class="result">0</div>
+        <button class="btn" onclick="appendSymbol('/')">/</button>
+        <button class="btn" onclick="appendSymbol('*')">*</button>
+        <button class="btn" onclick="appendSymbol('-')">-</button>
+        <button class="btn" onclick="appendSymbol('+')">+</button>
+        <button class="btn" onclick="appendSymbol('7')">7</button>
+        <button class="btn" onclick="appendSymbol('8')">8</button>
+        <button class="btn" onclick="appendSymbol('9')">9</button>
+        <button class="btn" onclick="appendSymbol('.')">.</button>
+        <button class="btn" onclick="appendSymbol('4')">4</button>
+        <button class="btn" onclick="appendSymbol('5')">5</button>
+        <button class="btn" onclick="appendSymbol('6')">6</button>
+        <button class="btn" onclick="calculateResult()">=</button>
+        <button class="btn" onclick="appendSymbol('1')">1</button>
+        <button class="btn" onclick="appendSymbol('2')">2</button>
+        <button class="btn" onclick="appendSymbol('')">3</button>
+        <button class="btn" onclick="clearResult()">C</button>
+    </div>
+    <div class="h">
+        <h1>Created by imranaly</h1>
+    </div>
+
+    <script>
+        function appendSymbol(symbol) {
+            var resultElement = document.getElementById("result");
+            if (resultElement.innerText === "0") {
+                resultElement.innerText = symbol;
+            } else {
+                resultElement.innerText += symbol;
+            }
+        }
+
+        function calculateResult() {
+            var resultElement = document.getElementById("result");
+            var expression = resultElement.innerText;
+            var result = eval(expression);
+            resultElement.innerText = result;
+        }
+
+        function clearResult() {
+            document.getElementById("result").innerText = "0";
+        }
+    </script>
+</body>
+
+</html>
